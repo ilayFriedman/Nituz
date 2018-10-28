@@ -1,5 +1,9 @@
 package Model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -10,6 +14,8 @@ public class User {
     private String privateName;
     private String lastName;
     private String city;
+
+    private String tableFields = "tbl_users(username, pwd, birthday, privateName, lastName, city) VALUES(?,?,?,?,?,?)";
 
     public static User readUserFromDB(String username, String pwd){
         //if user exists in DB, construct it.
@@ -144,4 +150,20 @@ public class User {
     }
 
 
+    public void insertRecordToTable(PreparedStatement pstmt) {
+        try {
+            pstmt.setString(1, this.getUsername());
+            pstmt.setString(2, this.getPwd());
+            pstmt.setString(3, this.getBirthday().toString());
+            pstmt.setString(4, this.getPrivateName());
+            pstmt.setString(5, this.getLastName());
+            pstmt.setString(6, this.getCity());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getTableFields() {
+        return tableFields;
+    }
 }

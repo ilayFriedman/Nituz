@@ -19,8 +19,8 @@
         <module name="nit1pro" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="nit1pro" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="nit1pro" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
